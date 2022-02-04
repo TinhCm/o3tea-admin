@@ -5,11 +5,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>O3 TEA admin</title>
+    <title>O3 TEA ADMIN</title>
+    <link rel="stylesheet" href="/dangNhap/main.css">
+    <link rel="stylesheet" href="/dangNhap/responsive.css">
+    <link rel="icon" href="/assets/img/logo-removebg.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
 <body>
 
+    <!-- Page đăng nhập -->
+    <div id="dang_nhap" class="dang_nhap">
+        <div class="dang_nhap_content">
+            <div class="dang_nhap1">
+                <h1>Đăng nhập</h1>
+                <h2>O<sup>3</sup> TEA</h2>
+                <form onsubmit="return false" action="">
+                    <input placeholder="Nhập vào tên" class="dang_nhap1_ten" type="text" name="name">
+                    <div class="dang_nhap1_mat_khau">
+                        <input placeholder="Nhập vào mật khẩu" class="dang_nhap1_password" type="password" name="name">
+                        <button class="dang_nhap1_xemMK"><i class="fas fa-eye"></i></button>
+                    </div>
+                </form>
+                <button class="create_dang_nhap">Đăng nhập</button>
+                <p class="nosuccses"></p>
+            </div>
+        </div>
+    </div>
+    <!-- Page đăng nhập -->
+    <script src="/index.js"></script>
 </body>
 
 </html>
