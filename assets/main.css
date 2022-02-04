@@ -933,3 +933,156 @@ header {
 .cauHoi ol li a {
     text-decoration: none;
 }
+
+
+/* Thêm sản phẩm */
+
+.add_sanPham {
+    margin-bottom: 40px;
+}
+
+.add_sanPham_content {
+    display: flex;
+    margin: auto;
+    padding: 20px 20px;
+    padding-top: 30px;
+    background-color: #f3f4fa;
+    border-radius: 10px;
+}
+
+.add_sanPham_content2 button {
+    height: 40px;
+    width: 100px;
+    font-size: 18px;
+    display: block;
+    border-radius: 10px;
+    border: none;
+    background-color: #02b24e;
+    color: white;
+    margin: auto;
+}
+
+.add_sanPham_content2 {
+    margin: auto;
+}
+
+.add_sanPham h1 {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.add_sanPham_list {
+    margin-bottom: 10px;
+}
+
+.add_sanPham_list label {
+    font-size: 20px;
+    display: inline-block;
+    min-width: 200px;
+}
+
+.add_sanPham_list input {
+    font-size: 16px;
+    outline: none;
+    height: 40px;
+    width: 550px;
+    border-radius: 10px;
+    border-width: 1px;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.add_sanPham_list textarea {
+    box-sizing: border-box;
+    font-size: 16px;
+    outline: none;
+    height: 150px;
+    width: 550px;
+    border-radius: 10px;
+    border-width: 1px;
+    padding: 10px 10px;
+}
+
+.add_sanPham_list h4 {
+    font-size: 14px;
+    color: red;
+    font-weight: 400;
+}
+
+
+/* Mail */
+
+.mail {
+    margin-bottom: 40px;
+    flex: 3;
+    margin-right: 20px;
+    box-sizing: border-box;
+}
+
+.mail h1 {
+    text-align: center;
+    padding-bottom: 20px;
+    line-height: 25px;
+}
+
+.mail {
+    text-align: center;
+}
+
+.mail_center {
+    display: flex;
+    background-color: #f3f4fa;
+    border-radius: 10px;
+}
+
+.mail_ul {
+    margin: auto;
+}
+
+.mail_ul li {
+    font-size: 18px;
+}
+
+.mail_ul li h4 {
+    font-weight: 400;
+    text-align: left;
+}
+
+
+/* Contact */
+
+.contact_admin {
+    flex: 4;
+}
+
+.contact_admin h1 {
+    text-align: center;
+    padding-bottom: 20px;
+    line-height: 25px;
+}
+
+.contact_admin_center {
+    display: flex;
+    background-color: #f3f4fa;
+    border-radius: 10px;
+    margin-bottom: 70px;
+}
+
+.contact_admin_ul {
+    margin: auto;
+}
+
+.contact_admin_ul li {
+    font-size: 18px;
+}
+
+.contact_admin_ul li h4 {
+    text-align: left;
+    font-weight: 400;
+}
+
+.content_amin {
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+}

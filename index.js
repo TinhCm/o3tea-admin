@@ -42,9 +42,6 @@ function xuLi_dang_nhap() {
             var dang_nhap_pass = $('.dang_nhap1_password');
             var nosucces = $('.nosuccses');
             var admin = $('.header-thong_tin_1');
-            var header_thong_tin_user_1DN = $('.header-thong_tin_user_1');
-            var header_thong_tin_1DN = $('.header-thong_tin_1');
-            var thong_tin_user_adminDN = $('.thong_tin_user_admin');
 
             layDuLieu_dang_nhap(check)
 
@@ -84,9 +81,6 @@ function xuLi_dang_nhap() {
         var dang_nhap_pass = $('.dang_nhap1_password');
         var nosucces = $('.nosuccses');
         var admin = $('.header-thong_tin_1');
-        var header_thong_tin_user_1DN = $('.header-thong_tin_user_1');
-        var header_thong_tin_1DN = $('.header-thong_tin_1');
-        var thong_tin_user_adminDN = $('.thong_tin_user_admin');
 
         layDuLieu_dang_nhap(check)
 
@@ -111,11 +105,9 @@ function xuLi_dang_nhap() {
                     setCookie("ten", checkPast.ten, 365);
                 } else {
                     nosucces.innerHTML = "Tên đăng nhập hoặc mật khẩu sai";
-                    alert("Đăng nhập k thành công")
                 }
             } else {
                 nosucces.innerHTML = "Tên đăng nhập hoặc mật khẩu sai";
-                alert("Đăng nhập k thành công")
             }
         }
     }

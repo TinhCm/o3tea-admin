@@ -1,20 +1,18 @@
 var API_list = 'https://o3tea.glitch.me/list'
 var API_email = 'https://o3tea.glitch.me/email'
+var API_contact = 'https://o3tea.glitch.me/contact'
 const $ = document.querySelector.bind(document);
 
 function start() {
-    get_db_ne(post_db_ne);
-    get_db_st(post_db_st);
-    get_db_ts(post_db_ts);
-    get_db_ttc(post_db_ttc);
-    get_db_th(post_db_th);
-    get_db_k(post_db_k);
+    xuLi_db_add();
     xuLi_db_email();
     xuLi_search();
+    get_db_email(post_db_email);
+    get_db_contact(post_db_contact);
 }
 start();
 
-//Nước ép
+//Thêm sản phẩm
 function get_db_ne(callback) {
     fetch(API_list)
         .then(function(response) {
@@ -39,318 +37,100 @@ function create_db_ne(data, callback) {
         .then(callback);
 }
 
-function post_db_ne(list) {
-    var loc_NE = list.filter(function(lists) {
-        return lists.maLoai === "NE";
-    })
+function xuLi_db_add() {
 
-    var temp = loc_NE.filter(function(temps) {
-        return temps.banChay == 1;
-    })
+    var add_sanPham_list_buttom = $('.add_sanPham_list_buttom');
 
-    var htmls = temp.map(function(lists) {
-        return "<li class='content_backend width_column_5 width_row '>" + "<img " + "src='" + lists.img + "' class='content2_sanPham' >" +
-            "</img>" +
-            "<p class='content2_tenSanPham'>" + lists.name + "</p>" +
-            "<span>" + lists.gia + "</span>" +
-            "</li>"
-    })
+    add_sanPham_list_buttom.onclick = function(e) {
+        var maLoai;
+        var add_sanPham_tenLoai = $('.add_sanPham_tenLoai').value;
+        var add_sanPham_tenLoai_h4 = $('.add_sanPham_tenLoai_h4');
+        var add_sanPham_tenSP = $('.add_sanPham_tenSP').value;
+        var add_sanPham_tenSP_h4 = $('.add_sanPham_tenSP_h4');
+        var add_sanPham_lienKet = $('.add_sanPham_lienKet').value;
+        var add_sanPham_lienKet_h4 = $('.add_sanPham_lienKet_h4');
+        var add_sanPham_gia = $('.add_sanPham_gia').value;
+        var add_sanPham_gia_h4 = $('.add_sanPham_gia_h4');
+        var add_sanPham_banChay = $('.add_sanPham_banChay').value;
+        var add_sanPham_banChay_h4 = $('.add_sanPham_banChay_h4');
+        var add_sanPham_moTa = $('.add_sanPham_moTa').value;
+        var add_sanPham_moTa_h4 = $('.add_sanPham_moTa_h4');
 
+        var add_sanPham_list_buttom_h4 = $('.add_sanPham_list_buttom_h4');
 
-    $('.hien').innerHTML = htmls.join('');
-}
-
-//Sinh tố
-function get_db_st(callback) {
-    fetch(API_list)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(callback);
-}
-
-function create_db_st(data, callback) {
-    var opption = {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-            "Content-Type": "application/json",
-        },
-    }
-
-    fetch(API_list, opption)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(callback);
-}
-
-function post_db_st(list) {
-    var loc_NE = list.filter(function(lists) {
-        return lists.maLoai === "ST";
-    })
-
-    var temp = loc_NE.filter(function(temps) {
-        return temps.banChay == 1;
-    })
-
-    var htmls = temp.map(function(lists) {
-        return "<li class='content_backend width_column_5 width_row '>" + "<img " + "src='" + lists.img + "' class='content2_sanPham' >" +
-            "</img>" +
-            "<p class='content2_tenSanPham'>" + lists.name + "</p>" +
-            "<span>" + lists.gia + "</span>" +
-            "</li>"
-    })
-
-
-    $('.sinhTo_hien').innerHTML = htmls.join('');
-}
-
-//Trà sữa
-function get_db_ts(callback) {
-    fetch(API_list)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(callback);
-}
-
-function create_db_ts(data, callback) {
-    var opption = {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-            "Content-Type": "application/json",
-        },
-    }
-
-    fetch(API_list, opption)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(callback);
-}
-
-function post_db_ts(list) {
-    var loc_NE = list.filter(function(lists) {
-        return lists.maLoai === "TS";
-    })
-
-    var temp = loc_NE.filter(function(temps) {
-        return temps.banChay == 1;
-    })
-
-    var htmls = temp.map(function(lists) {
-        return "<li class='content_backend width_column_5 width_row '>" + "<img " + "src='" + lists.img + "' class='content2_sanPham' >" +
-            "</img>" +
-            "<p class='content2_tenSanPham'>" + lists.name + "</p>" +
-            "<span>" + lists.gia + "</span>" +
-            "</li>"
-    })
-
-
-    $('.traSua_hien').innerHTML = htmls.join('');
-}
-
-//Trà trái cây
-function get_db_ttc(callback) {
-    fetch(API_list)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(callback);
-}
-
-function create_db_ttc(data, callback) {
-    var opption = {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-            "Content-Type": "application/json",
-        },
-    }
-
-    fetch(API_list, opption)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(callback);
-}
-
-function post_db_ttc(list) {
-    var loc_NE = list.filter(function(lists) {
-        return lists.maLoai === "TTC";
-    })
-
-    var temp = loc_NE.filter(function(temps) {
-        return temps.banChay == 1;
-    })
-
-    var htmls = temp.map(function(lists) {
-        return "<li class='content_backend width_column_5 width_row '>" + "<img " + "src='" + lists.img + "' class='content2_sanPham' >" +
-            "</img>" +
-            "<p class='content2_tenSanPham'>" + lists.name + "</p>" +
-            "<span>" + lists.gia + "</span>" +
-            "</li>"
-    })
-
-    $('.traTraiCay_hien').innerHTML = htmls.join('');
-}
-
-//Trà hương
-function get_db_th(callback) {
-    fetch(API_list)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(callback);
-}
-
-function create_db_th(data, callback) {
-    var opption = {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-            "Content-Type": "application/json",
-        },
-    }
-
-    fetch(API_list, opption)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(callback);
-}
-
-function post_db_th(list) {
-    var loc_NE = list.filter(function(lists) {
-        return lists.maLoai === "TH";
-    })
-
-    var temp = loc_NE.filter(function(temps) {
-        return temps.banChay == 1;
-    })
-
-    var htmls = temp.map(function(lists) {
-        return "<li class='content_backend width_column_5 width_row '>" + "<img " + "src='" + lists.img + "' class='content2_sanPham' >" +
-            "</img>" +
-            "<p class='content2_tenSanPham'>" + lists.name + "</p>" +
-            "<span>" + lists.gia + "</span>" +
-            "</li>"
-    })
-
-    $('.traHuong_hien').innerHTML = htmls.join('');
-}
-
-//Khác
-function get_db_k(callback) {
-    fetch(API_list)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(callback);
-}
-
-function create_db_k(data, callback) {
-    var opption = {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-            "Content-Type": "application/json",
-        },
-    }
-
-    fetch(API_list, opption)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(callback);
-}
-
-function post_db_k(list) {
-    var loc_NE = list.filter(function(lists) {
-        return lists.maLoai === "K";
-    })
-
-    var temp = loc_NE.filter(function(temps) {
-        return temps.banChay == 1;
-    })
-
-    var htmls = temp.map(function(lists) {
-        return "<li class='content_backend width_column_5 width_row '>" + "<img " + "src='" + lists.img + "' class='content2_sanPham' >" +
-            "</img>" +
-            "<p class='content2_tenSanPham'>" + lists.name + "</p>" +
-            "<span>" + lists.gia + "</span>" +
-            "</li>"
-    })
-
-    $('.khac_hien').innerHTML = htmls.join('');
-}
-
-//API email
-function get_db_email(callback) {
-    fetch(API_email)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(callback);
-}
-
-function create_db_email(data, callback) {
-    var opption = {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-            "Content-Type": "application/json",
-        },
-    }
-
-    fetch(API_email, opption)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(callback);
-}
-
-function xuLi_db_email() {
-    var footer1_right_button = $('.footer1_right_button');
-    footer1_right_button.onclick = function(e) {
-        var footer1_right_email = $('.footer1_right_email').value;
         var today = new Date();
         var date = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds() + '-' +
             today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
 
-        get_db_email(check_exist)
+        get_db_ne(check_exist2)
 
-        function check_exist(email) {
-            var check_exist = email.some(function(emails) {
-                return emails.email === footer1_right_email;
+        function check_exist2(list) {
+            var check_exist = list.some(function(lists) {
+                return lists.name.toLowerCase() === add_sanPham_tenSP.toLowerCase();
             })
 
-            var footer1_right2 = $('.footer1_right2');
-
-            if (footer1_right_email === "") {
-                footer1_right2.innerHTML = "Vui lòng nhập email!"
-            } else if (check_exist == true) {
-                footer1_right2.innerHTML = "Email đã tồn tại!"
+            if (check_exist2 == true) {
+                add_sanPham_list_buttom_h4.innerHTML = "Sản phẩm đã tồn tại!";
             } else {
-                formData = {
-                    email: footer1_right_email,
-                    date: date,
+
+                if (add_sanPham_tenLoai === "") {
+                    add_sanPham_tenLoai_h4.innerHTML = "Vui lòng nhập tên loại!"
+                } else if (add_sanPham_tenSP === "") {
+                    add_sanPham_tenLoai_h4.innerHTML = "";
+                    add_sanPham_tenSP_h4.innerHTML = "Vui lòng nhập tên sản phẩm!"
+                } else if (add_sanPham_lienKet === "") {
+                    add_sanPham_tenLoai_h4.innerHTML = "";
+                    add_sanPham_tenSP_h4.innerHTML = "";
+                    add_sanPham_lienKet_h4.innerHTML = "Vui lòng nhập liên kết hình ảnh!"
+                } else if (add_sanPham_gia === "") {
+                    add_sanPham_tenLoai_h4.innerHTML = "";
+                    add_sanPham_tenSP_h4.innerHTML = "";
+                    add_sanPham_lienKet_h4.innerHTML = "";
+                    add_sanPham_gia_h4.innerHTML = "Vui lòng nhập giá bán!"
+                } else if (add_sanPham_banChay === "") {
+                    add_sanPham_tenLoai_h4.innerHTML = "";
+                    add_sanPham_tenSP_h4.innerHTML = "";
+                    add_sanPham_lienKet_h4.innerHTML = "";
+                    add_sanPham_gia_h4.innerHTML = "";
+                    add_sanPham_banChay_h4.innerHTML = "Vui lòng nhập trạng thái!"
+                } else {
+                    if (add_sanPham_tenLoai.toLowerCase() === "nước ép") {
+                        maLoai = "NE"
+                    } else if (add_sanPham_tenLoai.toLowerCase() === "sinh tố") {
+                        maLoai = "ST"
+                    } else if (add_sanPham_tenLoai.toLowerCase() === "trà sữa") {
+                        maLoai = "TS"
+                    } else if (add_sanPham_tenLoai.toLowerCase() === "trà trái cây") {
+                        maLoai = "TTC"
+                    } else if (add_sanPham_tenLoai.toLowerCase() === "trà hương") {
+                        maLoai = "TH"
+                    } else if (add_sanPham_tenLoai.toLowerCase() === "khác") {
+                        maLoai = "K"
+                    }
+
+                    formData = {
+                        maLoai: maLoai,
+                        tenLoai: add_sanPham_tenLoai,
+                        name: add_sanPham_tenSP,
+                        img: add_sanPham_lienKet,
+                        gia: add_sanPham_gia + "đ",
+                        banChay: add_sanPham_banChay,
+                        moTa: add_sanPham_moTa,
+                        date: date
+                    }
+                    create_db_ne(formData, function() {
+                        add_sanPham_list_buttom_h4.innerHTML = "Tạo thành công!";
+                        setTimeout(() => {
+                            location.reload();
+                        }, 1000);
+                    })
                 }
-                create_db_email(formData, function() {
-                    footer1_right2.innerHTML = "Đăng ký thành công!";
-                    setTimeout(() => {
-                        location.reload();
-                    }, 1000);
-                })
             }
         }
     }
 }
 
 //Search
-
 function get_db(callback) {
     fetch(API_list)
         .then(function(response) {
@@ -428,4 +208,117 @@ function xuLi_search() {
         var result = $('.result');
         result.classList.add('display');
     }
+}
+
+//API email
+function get_db_email(callback) {
+    fetch(API_email)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(callback);
+}
+
+function create_db_email(data, callback) {
+    var opption = {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }
+
+    fetch(API_email, opption)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(callback);
+}
+
+function post_db_email(email) {
+    var htmls = email.map(function(emails) {
+        return `<li class = "">
+                <h4 class = "duLieu1a">${emails.email}</h4>
+            </li>`
+    })
+
+    document.querySelector('.mail_ul').innerHTML = htmls.join('');
+}
+
+function xuLi_db_email() {
+    var footer1_right_button = $('.footer1_right_button');
+    footer1_right_button.onclick = function(e) {
+        var footer1_right_email = $('.footer1_right_email').value;
+        var today = new Date();
+        var date = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds() + '-' +
+            today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
+
+        get_db_email(check_exist)
+
+        function check_exist(email) {
+            var check_exist = email.some(function(emails) {
+                return emails.email === footer1_right_email;
+            })
+
+            var footer1_right2 = $('.footer1_right2');
+
+            if (footer1_right_email === "") {
+                footer1_right2.innerHTML = "Vui lòng nhập email!"
+            } else if (check_exist == true) {
+                footer1_right2.innerHTML = "Email đã tồn tại!"
+            } else {
+                formData = {
+                    email: footer1_right_email,
+                    date: date,
+                }
+                create_db_email(formData, function() {
+                    footer1_right2.innerHTML = "Đăng ký thành công!";
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1000);
+                })
+            }
+        }
+    }
+}
+
+//Contact
+
+//API_contact
+function get_db_contact(callback) {
+    fetch(API_contact)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(callback);
+}
+
+function create_db_contact(data, callback) {
+    var opption = {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }
+
+    fetch(API_contact, opption)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(callback);
+}
+
+function post_db_contact(contact) {
+    var htmls = contact.map(function(contacts) {
+        return `<li class = "">
+                <h4 class = "duLieu1a">Họ và tên:  ${contacts.name}</h4>
+                <h4 class = "duLieu1a">Số điện thoại: ${contacts.phone}</h4>
+                <h4 class = "duLieu1a">Email: ${contacts.email}</h4>
+                <h4 class = "duLieu1a">Nội dung: ${contacts.content}</h4>
+                <h4 class = "duLieu1a">Thời gian gửi yêu cầu: ${contacts.date}</h4>
+            </li>`
+    })
+
+    document.querySelector('.contact_admin_ul').innerHTML = htmls.join('');
 }
