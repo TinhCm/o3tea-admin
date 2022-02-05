@@ -13,8 +13,7 @@ function start() {
     setInterval(() => {
         get_db_email(post_db_email);
         get_db_contact(post_db_contact);
-        get_db_ne(post_db_ne);
-    }, 3000);
+    }, 1000);
 }
 start();
 
