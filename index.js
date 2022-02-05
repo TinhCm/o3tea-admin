@@ -10,10 +10,6 @@ function start() {
     get_db_contact(post_db_contact);
     xuLi_dang_nhap();
     get_db_ne(post_db_ne);
-    // setInterval(() => {
-    //     get_db_email(post_db_email);
-    //     get_db_contact(post_db_contact);
-    // }, 1000);
 }
 start();
 
