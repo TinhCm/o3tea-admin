@@ -213,7 +213,7 @@ function xuLi_db_add() {
                 return lists.name.toLowerCase() === add_sanPham_tenSP.toLowerCase();
             })
 
-            if (check_exist2 == true) {
+            if (check_exist == true) {
                 add_sanPham_list_buttom_h4.innerHTML = "Sản phẩm đã tồn tại!";
             } else {
 
