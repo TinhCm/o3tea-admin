@@ -173,7 +173,11 @@ function create_db_ne(data, callback) {
 
 function post_db_ne(list) {
 
-    var htmls = list.map(function(lists) {
+    var loc_NE = list.filter(function(lists) {
+        return lists.trangThai === 0;
+    })
+
+    var htmls = loc_NE.map(function(lists) {
         return "<li class='content_backend width_column_5 width_row '>" + "<img " + "src='" + lists.img + "' class='content2_sanPham' >" +
             "</img>" +
             "<p class='content2_tenSanPham'>" + lists.name + "</p>" +
@@ -264,6 +268,7 @@ function xuLi_db_add() {
                         gia: add_sanPham_gia + "đ",
                         banChay: add_sanPham_banChay,
                         moTa: add_sanPham_moTa,
+                        trangThai: 0,
                         date: date
                     }
                     create_db_ne(formData, function() {

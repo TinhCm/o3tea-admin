@@ -127,6 +127,18 @@ html {
         padding-top: 0!important;
     }
     /* Header */
+    .content h1 {
+        text-align: center;
+        font-size: 16px;
+    }
+    .content,
+    .sinhTo_content,
+    .traTraiCay_content,
+    .traHuong_content,
+    .traSua_content,
+    .khac_content {
+        padding-bottom: 30px;
+    }
     .header2_sanPham ul li a {
         font-size: 13px;
     }
