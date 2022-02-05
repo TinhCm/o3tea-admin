@@ -1,12 +1,19 @@
 var API_dang_nhap = 'https://o3tea.glitch.me/user'
+var API_list = 'https://o3tea.glitch.me/list'
+var API_email = 'https://o3tea.glitch.me/email'
+var API_contact = 'https://o3tea.glitch.me/contact'
 const $ = document.querySelector.bind(document);
 
-//Phần API đăng nhập
-function batDau_dang_nhap() {
+function start() {
+    xuLi_db_add();
+    get_db_email(post_db_email);
+    get_db_contact(post_db_contact);
     xuLi_dang_nhap();
+    get_db_ne(post_db_ne);
 }
-batDau_dang_nhap();
+start();
 
+//Phần API đăng nhập
 function layDuLieu_dang_nhap(callback) {
     fetch(API_dang_nhap)
         .then(function(response) {
@@ -41,7 +48,8 @@ function xuLi_dang_nhap() {
             var dang_nhap_ten = $('.dang_nhap1_ten');
             var dang_nhap_pass = $('.dang_nhap1_password');
             var nosucces = $('.nosuccses');
-            var admin = $('.header-thong_tin_1');
+            var home = $('.home');
+            var dang_nhap = $('.dang_nhap')
 
             layDuLieu_dang_nhap(check)
 
@@ -55,7 +63,9 @@ function xuLi_dang_nhap() {
                         return userss.id === (checkten + 1);
                     })
                     if (checkPast.password == dang_nhap_pass.value) {
-                        window.location.href = '/home/home.html';
+
+                        home.classList.add('display')
+                        dang_nhap.classList.add('noneDisplay')
 
                         function setCookie(cname, cvalue, exdays) {
                             const d = new Date();
@@ -80,7 +90,8 @@ function xuLi_dang_nhap() {
         var dang_nhap_ten = $('.dang_nhap1_ten');
         var dang_nhap_pass = $('.dang_nhap1_password');
         var nosucces = $('.nosuccses');
-        var admin = $('.header-thong_tin_1');
+        var home = $('.home');
+        var dang_nhap = $('.dang_nhap')
 
         layDuLieu_dang_nhap(check)
 
@@ -94,7 +105,8 @@ function xuLi_dang_nhap() {
                     return userss.id === (checkten + 1);
                 })
                 if (checkPast.password == dang_nhap_pass.value) {
-                    window.location.href = '/home/home.html';
+                    home.classList.add('display')
+                    dang_nhap.classList.add('noneDisplay')
 
                     function setCookie(cname, cvalue, exdays) {
                         const d = new Date();
@@ -125,3 +137,266 @@ dang_nhap1_xemMK.addEventListener('click', function() {
         currentType === 'password' ? 'text' : 'password'
     )
 })
+
+var home = $('.home');
+var dang_nhap = $('.dang_nhap')
+
+if (document.cookie != '') {
+    home.classList.add('display')
+    dang_nhap.classList.add('noneDisplay')
+}
+
+//Thêm sản phẩm
+function get_db_ne(callback) {
+    fetch(API_list)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(callback);
+}
+
+function create_db_ne(data, callback) {
+    var opption = {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }
+
+    fetch(API_list, opption)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(callback);
+}
+
+function post_db_ne(list) {
+
+    var htmls = list.map(function(lists) {
+        return "<li class='content_backend width_column_5 width_row '>" + "<img " + "src='" + lists.img + "' class='content2_sanPham' >" +
+            "</img>" +
+            "<p class='content2_tenSanPham'>" + lists.name + "</p>" +
+            "<span>" + lists.gia + "</span>" +
+            "</li>"
+    })
+
+
+    $('.hien').innerHTML = htmls.join('');
+}
+
+function xuLi_db_add() {
+
+    var add_sanPham_list_buttom = $('.add_sanPham_list_buttom');
+
+    add_sanPham_list_buttom.onclick = function(e) {
+        var maLoai;
+        var add_sanPham_tenLoai = $('.add_sanPham_tenLoai').value;
+        var add_sanPham_tenLoai_h4 = $('.add_sanPham_tenLoai_h4');
+        var add_sanPham_tenSP = $('.add_sanPham_tenSP').value;
+        var add_sanPham_tenSP_h4 = $('.add_sanPham_tenSP_h4');
+        var add_sanPham_lienKet = $('.add_sanPham_lienKet').value;
+        var add_sanPham_lienKet_h4 = $('.add_sanPham_lienKet_h4');
+        var add_sanPham_gia = $('.add_sanPham_gia').value;
+        var add_sanPham_gia_h4 = $('.add_sanPham_gia_h4');
+        var add_sanPham_banChay = $('.add_sanPham_banChay').value;
+        var add_sanPham_banChay_h4 = $('.add_sanPham_banChay_h4');
+        var add_sanPham_moTa = $('.add_sanPham_moTa').value;
+        var add_sanPham_moTa_h4 = $('.add_sanPham_moTa_h4');
+
+        var add_sanPham_list_buttom_h4 = $('.add_sanPham_list_buttom_h4');
+
+        var today = new Date();
+        var date = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds() + '-' +
+            today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
+
+        get_db_ne(check_exist2)
+
+        function check_exist2(list) {
+            var check_exist = list.some(function(lists) {
+                return lists.name.toLowerCase() === add_sanPham_tenSP.toLowerCase();
+            })
+
+            if (check_exist2 == true) {
+                add_sanPham_list_buttom_h4.innerHTML = "Sản phẩm đã tồn tại!";
+            } else {
+
+                if (add_sanPham_tenLoai === "") {
+                    add_sanPham_tenLoai_h4.innerHTML = "Vui lòng nhập tên loại!"
+                } else if (add_sanPham_tenSP === "") {
+                    add_sanPham_tenLoai_h4.innerHTML = "";
+                    add_sanPham_tenSP_h4.innerHTML = "Vui lòng nhập tên sản phẩm!"
+                } else if (add_sanPham_lienKet === "") {
+                    add_sanPham_tenLoai_h4.innerHTML = "";
+                    add_sanPham_tenSP_h4.innerHTML = "";
+                    add_sanPham_lienKet_h4.innerHTML = "Vui lòng nhập liên kết hình ảnh!"
+                } else if (add_sanPham_gia === "") {
+                    add_sanPham_tenLoai_h4.innerHTML = "";
+                    add_sanPham_tenSP_h4.innerHTML = "";
+                    add_sanPham_lienKet_h4.innerHTML = "";
+                    add_sanPham_gia_h4.innerHTML = "Vui lòng nhập giá bán!"
+                } else if (add_sanPham_banChay === "") {
+                    add_sanPham_tenLoai_h4.innerHTML = "";
+                    add_sanPham_tenSP_h4.innerHTML = "";
+                    add_sanPham_lienKet_h4.innerHTML = "";
+                    add_sanPham_gia_h4.innerHTML = "";
+                    add_sanPham_banChay_h4.innerHTML = "Vui lòng nhập trạng thái!"
+                } else {
+                    if (add_sanPham_tenLoai.toLowerCase() === "nước ép") {
+                        maLoai = "NE"
+                    } else if (add_sanPham_tenLoai.toLowerCase() === "sinh tố") {
+                        maLoai = "ST"
+                    } else if (add_sanPham_tenLoai.toLowerCase() === "trà sữa") {
+                        maLoai = "TS"
+                    } else if (add_sanPham_tenLoai.toLowerCase() === "trà trái cây") {
+                        maLoai = "TTC"
+                    } else if (add_sanPham_tenLoai.toLowerCase() === "trà hương") {
+                        maLoai = "TH"
+                    } else if (add_sanPham_tenLoai.toLowerCase() === "khác") {
+                        maLoai = "K"
+                    }
+
+                    formData = {
+                        maLoai: maLoai,
+                        tenLoai: add_sanPham_tenLoai,
+                        name: add_sanPham_tenSP,
+                        img: add_sanPham_lienKet,
+                        gia: add_sanPham_gia + "đ",
+                        banChay: add_sanPham_banChay,
+                        moTa: add_sanPham_moTa,
+                        date: date
+                    }
+                    create_db_ne(formData, function() {
+                        add_sanPham_list_buttom_h4.innerHTML = "Tạo thành công!";
+                        setTimeout(() => {
+                            location.reload();
+                        }, 1000);
+                    })
+                }
+            }
+        }
+    }
+}
+
+//Search
+function get_db(callback) {
+    fetch(API_list)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(callback);
+}
+
+function create_db(data, callback) {
+    var opption = {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }
+
+    fetch(API_list, opption)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(callback);
+}
+
+function post_db(list) {
+    var header_search_input = $('.header_search_input').value.toLowerCase();
+
+    var loc_NE = list.filter(function(lists) {
+        return lists.name.toLowerCase() === header_search_input;
+    })
+
+    if (loc_NE.length == 0) {
+        $('.result_none').innerHTML = "Kết quả tìm kiếm: 0/99+";
+        $('.result_none2').innerHTML = "Không có kết quả nào được tìm thấy";
+    } else {
+        var htmls = loc_NE.map(function(lists) {
+            return "<h4>Kết quả tìm kiếm: 1/99+</h4>" + "<img " + "src='" + lists.img + "' class='content2_sanPham' >" +
+                "</img>" +
+                "<p class='content2_tenSanPham'>" + lists.name + "</p>" +
+                "<span>" + lists.gia + "</span>"
+        })
+
+        $('.result').innerHTML = htmls.join('');
+    }
+}
+
+//API email
+function get_db_email(callback) {
+    fetch(API_email)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(callback);
+}
+
+function create_db_email(data, callback) {
+    var opption = {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }
+
+    fetch(API_email, opption)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(callback);
+}
+
+function post_db_email(email) {
+    var htmls = email.map(function(emails) {
+        return `<li class = "">
+                <h4 class = "duLieu1a">${emails.email}</h4>
+            </li>`
+    })
+
+    document.querySelector('.mail_ul').innerHTML = htmls.join('');
+}
+
+//Contact
+
+//API_contact
+function get_db_contact(callback) {
+    fetch(API_contact)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(callback);
+}
+
+function create_db_contact(data, callback) {
+    var opption = {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }
+
+    fetch(API_contact, opption)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(callback);
+}
+
+function post_db_contact(contact) {
+    var htmls = contact.map(function(contacts) {
+        return `<li class = "">
+                <h4 class = "duLieu1a">Họ và tên:  ${contacts.name}</h4>
+                <h4 class = "duLieu1a">Số điện thoại: ${contacts.phone}</h4>
+                <h4 class = "duLieu1a">Email: ${contacts.email}</h4>
+                <h4 class = "duLieu1a">Nội dung: ${contacts.content}</h4>
+                <h4 class = "duLieu1a">Thời gian gửi yêu cầu: ${contacts.date}</h4>
+            </li>`
+    })
+
+    document.querySelector('.contact_admin_ul').innerHTML = htmls.join('');
+}
