@@ -279,53 +279,6 @@ function xuLi_db_add() {
     }
 }
 
-//Search
-function get_db(callback) {
-    fetch(API_list)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(callback);
-}
-
-function create_db(data, callback) {
-    var opption = {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-            "Content-Type": "application/json",
-        },
-    }
-
-    fetch(API_list, opption)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(callback);
-}
-
-function post_db(list) {
-    var header_search_input = $('.header_search_input').value.toLowerCase();
-
-    var loc_NE = list.filter(function(lists) {
-        return lists.name.toLowerCase() === header_search_input;
-    })
-
-    if (loc_NE.length == 0) {
-        $('.result_none').innerHTML = "Kết quả tìm kiếm: 0/99+";
-        $('.result_none2').innerHTML = "Không có kết quả nào được tìm thấy";
-    } else {
-        var htmls = loc_NE.map(function(lists) {
-            return "<h4>Kết quả tìm kiếm: 1/99+</h4>" + "<img " + "src='" + lists.img + "' class='content2_sanPham' >" +
-                "</img>" +
-                "<p class='content2_tenSanPham'>" + lists.name + "</p>" +
-                "<span>" + lists.gia + "</span>"
-        })
-
-        $('.result').innerHTML = htmls.join('');
-    }
-}
-
 //API email
 function get_db_email(callback) {
     fetch(API_email)
@@ -354,7 +307,8 @@ function create_db_email(data, callback) {
 function post_db_email(email) {
     var htmls = email.map(function(emails) {
         return `<li class = "">
-                <h4 class = "duLieu1a">${emails.email}</h4>
+                <h4 class = "duLieu1a"> <strong>Email: </strong>${emails.email}</h4>
+                <h4 class = "duLieu1a"> <strong>Thời gian đăng ký: </strong>${emails.date}</h4>
             </li>`
     })
 
@@ -391,11 +345,11 @@ function create_db_contact(data, callback) {
 function post_db_contact(contact) {
     var htmls = contact.map(function(contacts) {
         return `<li class = "">
-                <h4 class = "duLieu1a">Họ và tên:  ${contacts.name}</h4>
-                <h4 class = "duLieu1a">Số điện thoại: ${contacts.phone}</h4>
-                <h4 class = "duLieu1a">Email: ${contacts.email}</h4>
-                <h4 class = "duLieu1a">Nội dung: ${contacts.content}</h4>
-                <h4 class = "duLieu1a">Thời gian gửi yêu cầu: ${contacts.date}</h4>
+                <h4 class = "duLieu1a"> <strong>Họ và tên: </strong>${contacts.name}</h4>
+                <h4 class = "duLieu1a"><strong>Số điện thoại: </strong> ${contacts.phone}</h4>
+                <h4 class = "duLieu1a"><strong>Email: </strong> ${contacts.email}</h4>
+                <h4 class = "duLieu1a"><strong>Nội dung: </strong> ${contacts.content}</h4>
+                <h4 class = "duLieu1a"><strong>Thời gian gửi yêu cầu: </strong> ${contacts.date}</h4>
             </li>`
     })
 

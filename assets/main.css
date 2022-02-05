@@ -209,6 +209,7 @@ header {
 
 .contact_admin_ul {
     margin: auto;
+    padding-left: 0;
 }
 
 .contact_admin_ul li {
