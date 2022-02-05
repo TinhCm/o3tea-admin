@@ -394,3 +394,178 @@ header {
 .home {
     display: none;
 }
+
+
+/* Content */
+
+.content h1 {
+    text-align: center;
+}
+
+.content,
+.sinhTo_content,
+.traTraiCay_content,
+.traHuong_content,
+.traSua_content,
+.khac_content {
+    padding-bottom: 50px;
+}
+
+.content1,
+.sinhTo_content1,
+.traTraiCay_content1,
+.traHuong_content1,
+.traSua_content1,
+.khac_content1 {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    text-align: center;
+}
+
+.content1_left,
+.sinhTo_content1_left,
+.traTraiCay_content1_left,
+.traHuong_content1_left,
+.traSua_content1_left,
+.khac_content1_left {
+    display: flex;
+}
+
+.content_left_box,
+.sinhTo_content_left_box,
+.traTraiCay_content_left_box,
+.traHuong_content_left_box,
+.traSua_content_left_box,
+.khac_content_left_box {
+    height: 30px;
+    width: 15px;
+    background-color: #02b24e;
+    text-align: center;
+    margin: auto;
+    margin-right: 20px;
+}
+
+.content1_right p a,
+.sinhTo_content1_right p a,
+.traTraiCay_content1_right p a,
+.traHuong_content1_right p a,
+.traSua_content1_right p a,
+.khac_content1_right p a {
+    text-decoration: none;
+    font-size: 16px;
+    color: #02b24e;
+}
+
+.content2,
+.sinhTo_content2,
+.traTraiCay_content2,
+.traHuong_content2,
+.traSua_content2,
+.khac_content2 {
+    /* margin-left: -10px; */
+    margin-right: -10px;
+}
+
+.hien img,
+.sinhTo_hien img,
+.traSua_hien img,
+.traTraiCay_hien img,
+.traHuong_hien img,
+.khac_hien img {
+    width: 100%;
+    height: auto;
+}
+
+.content2 ul,
+.sinhTo_content2 ul,
+.traSua_content2 ul,
+.traTraiCay_content2 ul,
+.traHuong_content2 ul,
+.khac_content2 ul {
+    padding: 0px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.content2 ul li,
+.sinhTo_content2 ul li,
+.traSua_content2 ul li,
+.traTraiCay_content2 ul li,
+.traHuong_content2 ul li,
+.khac_content2 ul li {
+    padding-left: 0px;
+    padding: 0;
+    padding-right: 10px;
+}
+
+.content2 ul li:hover,
+.sinhTo_content2 ul li:hover,
+.traSua_content2 ul li:hover,
+.traTraiCay_content2 ul li:hover,
+.traHuong_content2 ul li:hover,
+.khac_content2 ul li {
+    box-shadow: 3px 15px 30px 0px rgb(184, 180, 180);
+    position: relative;
+    top: -5px;
+    transition: 0.5s;
+}
+
+.content2_sanPham {
+    height: 235px;
+    padding: 5px 5px;
+}
+
+.sinhTo_content2_sanPham {
+    padding: 5px 5px;
+}
+
+.traSua_content2_sanPham {
+    padding: 5px 5px;
+}
+
+.traTraiCay_content2_sanPham {
+    padding: 5px 5px;
+}
+
+.traHuong_content2_sanPham {
+    padding: 5px 5px;
+}
+
+.khac_content2_sanPham {
+    padding: 5px 5px;
+}
+
+.content_backend,
+.sinhTo_content_backend,
+.traTraiCay_content_backend,
+.traHuong_content_backend,
+.traSua_content_backend,
+.khac_content_backend {
+    background-color: #ffffff;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    /* box-shadow: 3px 15px 30px 0px rgb(184, 180, 180); */
+}
+
+.content_backend p,
+.sinhTo_content_backend p,
+.traTraiCay_content_backend p,
+.traHuong_content_backend p,
+.traSua_content_backend p,
+.khac_content_backend p {
+    font-size: 16px;
+    padding: 0 5px;
+}
+
+.content_backend span,
+.sinhTo_content_backend span,
+.traTraiCay_content_backend span,
+.traHuong_content_backend span,
+.traSua_content_backend span,
+.khac_content_backend span {
+    font-size: 14px;
+    text-align: center;
+    color: red;
+    padding: 0 5px;
+}
