@@ -224,6 +224,9 @@ html {
         margin: 0 -20px;
         border-radius: 0;
     }
+    .mail_ul {
+        padding-left: 0;
+    }
     .mail_ul li {
         font-size: 15px;
         border-bottom: 1px solid #02b24e;
