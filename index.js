@@ -10,6 +10,11 @@ function start() {
     get_db_contact(post_db_contact);
     xuLi_dang_nhap();
     get_db_ne(post_db_ne);
+    setInterval(() => {
+        get_db_email(post_db_email);
+        get_db_contact(post_db_contact);
+        get_db_ne(post_db_ne);
+    }, 3000);
 }
 start();
 
@@ -213,31 +218,36 @@ function xuLi_db_add() {
                 return lists.name.toLowerCase() === add_sanPham_tenSP.toLowerCase();
             })
 
+            var loc_NE = list.filter(function(lists) {
+                return lists.tenLoai === add_sanPham_tenLoai;
+            })
+
+            var temp0 = loc_NE.filter(function(temps) {
+                return temps.trangThai == 1;
+            })
+
+            var temp = temp0.filter(function(temps) {
+                return temps.banChay == 1;
+            })
+
+            console.log(temp.length);
+
             if (check_exist == true) {
                 add_sanPham_list_buttom_h4.innerHTML = "Sản phẩm đã tồn tại!";
             } else {
 
-                if (add_sanPham_tenLoai === "") {
-                    add_sanPham_tenLoai_h4.innerHTML = "Vui lòng nhập tên loại!"
-                } else if (add_sanPham_tenSP === "") {
-                    add_sanPham_tenLoai_h4.innerHTML = "";
+                if (add_sanPham_tenSP === "") {
                     add_sanPham_tenSP_h4.innerHTML = "Vui lòng nhập tên sản phẩm!"
                 } else if (add_sanPham_lienKet === "") {
-                    add_sanPham_tenLoai_h4.innerHTML = "";
                     add_sanPham_tenSP_h4.innerHTML = "";
                     add_sanPham_lienKet_h4.innerHTML = "Vui lòng nhập liên kết hình ảnh!"
-                } else if (add_sanPham_gia === "") {
-                    add_sanPham_tenLoai_h4.innerHTML = "";
-                    add_sanPham_tenSP_h4.innerHTML = "";
-                    add_sanPham_lienKet_h4.innerHTML = "";
-                    add_sanPham_gia_h4.innerHTML = "Vui lòng nhập giá bán!"
-                } else if (add_sanPham_banChay === "") {
-                    add_sanPham_tenLoai_h4.innerHTML = "";
-                    add_sanPham_tenSP_h4.innerHTML = "";
-                    add_sanPham_lienKet_h4.innerHTML = "";
-                    add_sanPham_gia_h4.innerHTML = "";
-                    add_sanPham_banChay_h4.innerHTML = "Vui lòng nhập trạng thái!"
+                } else if (add_sanPham_banChay == 1) {
+
+                    if (temp.length == 4) {
+                        add_sanPham_banChay_h4.innerHTML = "Số lượng sản phẩm thuộc loại bán chạy đã đạt tới giới hạn!"
+                    }
                 } else {
+
                     if (add_sanPham_tenLoai.toLowerCase() === "nước ép") {
                         maLoai = "NE"
                     } else if (add_sanPham_tenLoai.toLowerCase() === "sinh tố") {
@@ -252,7 +262,6 @@ function xuLi_db_add() {
                         maLoai = "K"
                     }
 
-                    add_sanPham_tenLoai = (add_sanPham_tenLoai.charAt(0).toUpperCase() + add_sanPham_tenLoai.slice(1));
                     add_sanPham_tenSP = (add_sanPham_tenSP.charAt(0).toUpperCase() + add_sanPham_tenSP.slice(1));
                     add_sanPham_moTa = (add_sanPham_moTa.charAt(0).toUpperCase() + add_sanPham_moTa.slice(1))
 
