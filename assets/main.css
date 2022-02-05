@@ -139,6 +139,7 @@ header {
     border-width: 1px;
     padding: 0 5px;
     box-sizing: border-box;
+    background-color: white;
 }
 
 .add_sanPham_list textarea {
