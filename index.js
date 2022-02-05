@@ -261,7 +261,7 @@ function xuLi_db_add() {
                         tenLoai: add_sanPham_tenLoai,
                         name: add_sanPham_tenSP,
                         img: add_sanPham_lienKet,
-                        gia: add_sanPham_gia + "đ",
+                        gia: add_sanPham_gia,
                         banChay: add_sanPham_banChay,
                         moTa: add_sanPham_moTa,
                         trangThai: 0,

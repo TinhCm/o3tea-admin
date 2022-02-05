@@ -158,6 +158,12 @@ html {
         height: 40px;
         border-radius: 5px;
     }
+    .add_sanPham_list select {
+        width: 100%;
+        font-size: 13px;
+        height: 40px;
+        border-radius: 5px;
+    }
     .add_sanPham_list textarea {
         width: 100%;
         font-size: 13px;
