@@ -235,6 +235,7 @@ html {
     }
     .contact_admin_ul li {
         font-size: 15px;
+        border-bottom: 1px solid #02b24e;
     }
     .contact_admin_center {
         margin: 0 -20px;
