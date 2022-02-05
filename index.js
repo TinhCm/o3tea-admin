@@ -138,14 +138,6 @@ dang_nhap1_xemMK.addEventListener('click', function() {
     )
 })
 
-var home = $('.home');
-var dang_nhap = $('.dang_nhap')
-
-if (document.cookie != '') {
-    home.classList.add('display')
-    dang_nhap.classList.add('noneDisplay')
-}
-
 //Thêm sản phẩm
 function get_db_ne(callback) {
     fetch(API_list)
@@ -259,6 +251,10 @@ function xuLi_db_add() {
                     } else if (add_sanPham_tenLoai.toLowerCase() === "khác") {
                         maLoai = "K"
                     }
+
+                    add_sanPham_tenLoai = (add_sanPham_tenLoai.charAt(0).toUpperCase() + add_sanPham_tenLoai.slice(1));
+                    add_sanPham_tenSP = (add_sanPham_tenSP.charAt(0).toUpperCase() + add_sanPham_tenSP.slice(1));
+                    add_sanPham_moTa = (add_sanPham_moTa.charAt(0).toUpperCase() + add_sanPham_moTa.slice(1))
 
                     formData = {
                         maLoai: maLoai,
@@ -404,4 +400,12 @@ function post_db_contact(contact) {
     })
 
     document.querySelector('.contact_admin_ul').innerHTML = htmls.join('');
+}
+
+var home = $('.home');
+var dang_nhap = $('.dang_nhap')
+
+if (document.cookie != '') {
+    home.classList.add('display')
+    dang_nhap.classList.add('noneDisplay')
 }
