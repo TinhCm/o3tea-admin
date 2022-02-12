@@ -27,11 +27,8 @@ function login() {
             localStorage.setItem('token', data.access_token);
 
             if (data.status == 401) {
-                console.log(data.status)
-                console.log("Đăng nhập không thành công")
                 nosucces.innerHTML = "Tên đăng nhập hoặc mật khẩu sai";
             } else {
-                console.log("Đăng nhập thành công")
                 home.classList.add('display')
                 dang_nhap.classList.add('noneDisplay')
                 location.reload();
@@ -72,12 +69,7 @@ dang_nhap1_xemMK.addEventListener('click', function() {
 var home = $('.home');
 var dang_nhap = $('.dang_nhap')
 
-if (localStorage.token == 'undefined' || localStorage.token == null) {
-    console.log("Chưa có token")
-}
-
 if (localStorage.token != 'undefined' && localStorage.token != null) {
-    console.log("Đã có token")
     home.classList.add('display')
     dang_nhap.classList.add('noneDisplay')
     setInterval(() => {
