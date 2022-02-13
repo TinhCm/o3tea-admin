@@ -293,7 +293,6 @@ header {
     margin: auto;
     background-color: rgb(87, 197, 240);
     width: 600px;
-    min-height: 400px;
     padding: 20px 80px;
     box-sizing: border-box;
     box-shadow: 30px 30px 10px;
@@ -309,6 +308,7 @@ header {
     text-align: center;
     font-size: 25px;
     margin-top: 0;
+    margin-bottom: 40px;
 }
 
 .dang_nhap1 h2 {
